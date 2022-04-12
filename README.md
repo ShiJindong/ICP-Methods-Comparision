@@ -4,5 +4,5 @@
 - 具体请参考我写的文档: 
     
   ICP-Methods-Comparision/ICP_Methods_Compare.pdf
-- 引用的参考论文，在文件夹 ICP-Methods-Comparision/papers 内
-- IMLS-ICP的简要实现，在文件夹 ICP-Methods-Comparision/imlsMatcherProject 内
+- 引用的参考论文，见文件夹 ICP-Methods-Comparision/papers
+- IMLS-ICP的简要实现，见文件夹 ICP-Methods-Comparision/imlsMatcherProject
