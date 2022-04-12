@@ -1,0 +1,8 @@
+prefix=/home/jindong/Lidar_SLAM/Exercise/ch4/HW4/imlsMatcherProject/src/champion_nav_msgs/devel
+
+Name: champion_nav_msgs
+Description: Description of champion_nav_msgs
+Version: 1.12.12
+Cflags: -I/home/jindong/Lidar_SLAM/Exercise/ch4/HW4/imlsMatcherProject/src/champion_nav_msgs/devel/include
+Libs: -L${prefix}/lib 
+Requires: roscpp rospy std_msgs geometry_msgs nav_msgs message_runtime

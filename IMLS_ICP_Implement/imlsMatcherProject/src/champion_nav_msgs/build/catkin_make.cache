@@ -1,0 +1,2 @@
+champion_nav_msgs
+-DCMAKE_BUILD_TYPE=Release -DCATKIN_DEVEL_PREFIX=/home/jindong/Lidar_SLAM/Exercise/ch4/HW4/imlsMatcherProject/src/champion_nav_msgs/devel -DCMAKE_INSTALL_PREFIX=/opt/ros/melodic -G Unix Makefiles
