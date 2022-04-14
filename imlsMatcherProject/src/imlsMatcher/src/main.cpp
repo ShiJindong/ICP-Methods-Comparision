@@ -14,14 +14,15 @@
 #include <boost/foreach.hpp>
 
 //pcl::visualization::CloudViewer g_cloudViewer("cloud_viewer");
-//此处bag包的地址需要自行修改
-std::string bagfile = "/home/jindong/Lidar_SLAM/Exercise/ch4/HW4/imlsMatcherProject/src/bag/imls_icp.bag";
+
+//此处为bag包的地址
+std::string bagfile = "/home/jindong/Lidar_SLAM/imlsMatcherProject/src/bag/imls_icp.bag";
 
 
 class imlsDebug
 {
 public:
-    imlsDebug()      // 构造函数
+    imlsDebug()      
     {
         /*
          * 消息发送(最终在rviz中实时显示轨迹)的递进关系:
@@ -49,25 +50,16 @@ public:
 
         //按顺序读取bag内激光的消息和里程计的消息
         // 头文件中需要调用<boost/foreach.hpp>来实现遍历，还有对应的需要查看的消息类型的头文件 "champion_nav_msgs/ChampionNavLaserScan.h"
-        // m: 消息实例   view: 消息源    =>  类似遍历for循环
         BOOST_FOREACH(rosbag::MessageInstance const m, view)
         {
             champion_nav_msgs::ChampionNavLaserScanConstPtr scan = m.instantiate<champion_nav_msgs::ChampionNavLaserScan>();
             if(scan != NULL)
-                championLaserScanCallback(scan);    // 执行对应的回调函数
+                championLaserScanCallback(scan);    
 
             nav_msgs::OdometryConstPtr odom = m.instantiate<nav_msgs::Odometry>();
             if(odom != NULL)
-                odomCallback(odom);                 // 执行对应的回调函数
-            /*
-             * see: https://blog.csdn.net/weixin_40215443/article/details/103793316  ros::spin()、ros::spinOnce()：使用细节、区别
-             *
-             * 当spinOnce函数被调用时，spinOnce就会调用回调函数队列中第一个callback函数，此时callback函数被执行。
-             * spinOnce函数执行一次后，接着执行下面的语句。
-             * 等到下次spinOnce函数又被调用时，回调函数队列中第二个callback函数就会被调用，以此类推
-             * 由于程序不是实时执行，而是处理bag数据，所以这里未设置执行频率，即假设了，一旦有数据到达，就执行回调函数，而不进行睡眠
-             * 也可以通过ros::Rate rate(100), while, ros::spinOnce(), rate.sleep()配合使用，来设置ros::subscriber的监听频率为100Hz
-             */
+                odomCallback(odom);                
+          
             ros::spinOnce();
             if(!ros::ok())
                 break;
@@ -150,7 +142,7 @@ public:
         /* 参考: 古月居 https://www.guyuehome.com/14553
          * ROS自己独特的message类型:  geometry_msgs::PoseStamped．
          * Pose 就是机器人的位姿(position and orientation)
-         * Stamped 表示时间戳(timestamped)，这儿时间戳是指时间戳是指格林威治时间1970年01月01日00时00分00秒起至现在的总纳秒．几乎所有的计算机都可以使用这个时间，方便统一．
+         * Stamped 表示时间戳(timestamped)，这儿时间戳是指时间戳是指格林威治时间1970年01月01日00时00分00秒起至现在的总纳秒．
          * 所以PoseStamped记录的是机器人的位姿加上记录位姿的时间这么一种message
          *
          * 通过geometry_msgs::PoseStamped msg定义一个叫msg的对象，该对象拥有header,pose两个数据成员．

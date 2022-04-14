@@ -204,7 +204,6 @@ bool IMLSICPMatcher::ImplicitMLSFunction(Eigen::Vector2d x,
         return false;
     }
 
-    //TODO
     //根据函数进行投影．计算height，即ppt中的I(x)
     for(int i = 0; i < nearPoints.size(); ++i)
     {
@@ -218,7 +217,6 @@ bool IMLSICPMatcher::ImplicitMLSFunction(Eigen::Vector2d x,
 
     height = projSum / (weightSum + 1e-5);
 
-    //end of TODO
 
     return true;
 }
@@ -297,10 +295,9 @@ void IMLSICPMatcher::projSourcePtToSurface(
         }
 
         Eigen::Vector2d yi;
-        //TODO
+
         //计算yi．
         yi = xi - height * nearNormal;
-        //end of TODO
         out_cloud.push_back(yi);
         out_normal.push_back(nearNormal);
 
@@ -447,7 +444,6 @@ Eigen::Vector2d IMLSICPMatcher::ComputeNormal(std::vector<Eigen::Vector2d> &near
 {
     Eigen::Vector2d normal;
 
-    //TODO
     //根据周围的激光点计算法向量，参考ppt中NICP计算法向量的方法
 
     // 计算均值 mu
@@ -484,7 +480,6 @@ Eigen::Vector2d IMLSICPMatcher::ComputeNormal(std::vector<Eigen::Vector2d> &near
     normal = evs.col(0);
      */
 
-    //end of TODO
 
     return normal;
 }
