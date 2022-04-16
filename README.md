@@ -6,3 +6,4 @@
   ICP-Methods-Comparision/ICP_Methods_Compare.pdf
 - 引用的参考论文，见文件夹 ICP-Methods-Comparision/papers
 - IMLS-ICP的简要实现，见文件夹 ICP-Methods-Comparision/imlsMatcherProject
+- 后续还会将已有ICP方法和相关方法(CSM)结合起来，实现更鲁棒的点云匹配效果，敬请期待
