@@ -38,7 +38,7 @@
      
      rosrun imlsMatcher imlsMatcher_node
      
-     打开rviz, add两个path信息 /imls_path_pub_ 和 /odom_path_pub_，将坐标系改为odom
+     打开rviz, add两个topic信息 /imls_path_pub_ 和 /odom_path_pub_，将坐标系改为odom
      
 显示结果见 /ICP-Methods-Comparision/imlsMatcherProject/trajectory_in_rviz/result.png
 
