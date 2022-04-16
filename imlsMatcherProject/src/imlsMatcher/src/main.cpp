@@ -15,7 +15,7 @@
 
 //pcl::visualization::CloudViewer g_cloudViewer("cloud_viewer");
 //此处bag包的地址需要自行修改
-std::string bagfile = ".../imlsMatcherProject/src/bag/imls_icp.bag";
+std::string bagfile = "/home/jindong/ICP-Methods-Comparision/imlsMatcherProject/src/bag/imls_icp.bag";
 
 
 class imlsDebug

@@ -4,7 +4,7 @@
 
 编译条件:
      
-     1. 安装Boost, Ceres, CSM, OpenCV, Eigen3
+     1. 安装Boost, Eigen3
      
      2. 安装libnabo库，参考: 
      
