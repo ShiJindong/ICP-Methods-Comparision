@@ -5,12 +5,10 @@
 IMLSICPMatcher::IMLSICPMatcher(void )
 {
     m_r = 0.03;
-    m_h = 0.10;
-    m_Iterations = 10;
-
-    m_PtID = 0;
-
-    m_pTargetKDTree = m_pSourceKDTree = NULL;
+    m_h = 0.10;                                 //含义见论文．用来计算权重． m_r ~ 3*m_h
+    m_Iterations = 10;                          // 迭代次数
+    m_PtID = 0;                                 //点云的id
+    m_pTargetKDTree = m_pSourceKDTree = NULL;   // 目标帧(参考帧)点云 和 当前点云的指针
 }
 
 //构造函数．
@@ -296,8 +294,11 @@ void IMLSICPMatcher::projSourcePtToSurface(
 
         Eigen::Vector2d yi;
 
+
         //计算yi．
         yi = xi - height * nearNormal;
+
+
         out_cloud.push_back(yi);
         out_normal.push_back(nearNormal);
 
@@ -445,7 +446,6 @@ Eigen::Vector2d IMLSICPMatcher::ComputeNormal(std::vector<Eigen::Vector2d> &near
     Eigen::Vector2d normal;
 
     //根据周围的激光点计算法向量，参考ppt中NICP计算法向量的方法
-
     // 计算均值 mu
     Eigen::Vector2d mu = Eigen::Vector2d(0, 0);
     for(auto it = nearPoints.cbegin(); it != nearPoints.cend(); ++it)
@@ -462,23 +462,22 @@ Eigen::Vector2d IMLSICPMatcher::ComputeNormal(std::vector<Eigen::Vector2d> &near
     }
     cov /= nearPoints.size();
 
-    //对协方差矩阵进行特征分解
-    Eigen::EigenSolver<Eigen::Matrix2d> es(cov);
+    //对协方差矩阵进行特征分解, 法向量定义为最小特征值对应的特征向量
+    // 计算特征值和特征向量，使用selfadjont按照对阵矩阵的算法去计算，可以让产生的vec和val按照有序排列 (由小到大)
+    // 由于这里协方差矩阵为对称矩阵，所以可以使用Eigen::SelfAdjointEigenSolver，更方便
+    Eigen::SelfAdjointEigenSolver<Eigen::Matrix2d> es(cov);
+    Eigen::Matrix2d evs = es.eigenvectors();
+    normal = evs.col(0);
 
-    // 法向量定义为最小特征值对应的特征向量
+
+    /*
+    // 或者使用EigenSolver, 形式为二维向量,比如(2,0)(-1,0)。。 不会对特征值进行排序, 产生的特征向量是单位化的
+    Eigen::EigenSolver<Eigen::Matrix2d> es(cov);
     if(es.eigenvalues()[0].real() < es.eigenvalues()[1].real())    // 或者 es.eigenvalues()(0,0).real() < es.eigenvalues(1,0).real()
         normal = es.eigenvectors().col(0).real();                  // 或者 normal = es.eigenvectors().col(0).normalized().real();
     else
         normal = es.eigenvectors().col(1).real();
-
-
-    // 计算特征值和特征向量，使用selfadjont按照对阵矩阵的算法去计算，可以让产生的vec和val按照有序排列 (由小到大)
-    // 由于这里协方差矩阵为对称矩阵，所以可以使用Eigen::SelfAdjointEigenSolver，更方便
-    /*
-    Eigen::SelfAdjointEigenSolver<Eigen::Matrix2d> es(cov);
-    Eigen::Matrix2d evs = es.eigenvectors();
-    normal = evs.col(0);
-     */
+    */
 
 
     return normal;
