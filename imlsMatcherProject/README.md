@@ -16,11 +16,10 @@
      4. 安装自定义消息到系统，执行src/champion_nav_msgs内的install.sh:     bash install.sh
         (注意，需要先将install.sh内的ros版本改成你安装的ros版本，比如melodic, kinetic等)
      
-     5. 修改 src/imlsMatcher/src/main.cpp内bag包的路径为你的bag路径。
+     5. 将 imlsMatcherProject/src/bag/imls_icp_bag.zip 解压到 imlsMatcherProject/src/bag/
+        修改 src/imlsMatcher/src/main.cpp 内bag包的路径为你的bag包路径。
          
 编译:
-     
-     将 imlsMatcherProject/src/bag/imls_icp_bag.zip 解压到 imlsMatcherProject/src/bag/
      
      cd .../imlsMatcherProject
      
