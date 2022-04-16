@@ -27,8 +27,6 @@
 
 运行:
      
-     新打开一个命令窗口后
-     
      roscore
      
      cd .../imlsMatcherProject
