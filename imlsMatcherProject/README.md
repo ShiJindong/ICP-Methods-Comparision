@@ -24,7 +24,7 @@
      
      cd .../imlsMatcherProject
      
-     catkin_ws
+     catkin_make
 
 运行:
      
