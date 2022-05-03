@@ -1,9 +1,11 @@
 # ICP-Methods-Comparision
 ---
-我对多种ICP点云匹配方法 (包括 ICP, PL-ICP, NICP, IMLS-ICP) 进行了较为细致的比较
-- 具体请参考我写的文档: 
-    
+Hey, I have made a comparision between all ICP based laser scan-matching methods in detail (including ICP, PL-ICP, NICP, IMLS-ICP):
+- You can see my document:   
   ICP-Methods-Comparision/ICP_Methods_Compare.pdf
-- 引用的参考论文，见文件夹 ICP-Methods-Comparision/papers
-- IMLS-ICP的简要实现，见文件夹 ICP-Methods-Comparision/imlsMatcherProject
-- 后续还会将已有ICP方法和相关方法(CSM)结合起来，实现更鲁棒的点云匹配效果
+- The papers I have referenced, please see the folder:  
+  ICP-Methods-Comparision/papers
+  
+- I made an implementation of methods IMLS-ICP，flease see 
+  ICP-Methods-Comparision/imlsMatcherProject
+- In future,the Correlative Scan-Matching (CSM) will also be added, to get a robuster pose estimate result.
