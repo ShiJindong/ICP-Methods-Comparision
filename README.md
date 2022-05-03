@@ -6,6 +6,6 @@ Hey, I have made a comparision between all ICP based laser scan-matching methods
 - The papers I have referenced, please see the folder:  
   ICP-Methods-Comparision/papers
   
-- I made an implementation of methods IMLS-ICP，flease see 
+- an implementation of methods IMLS-ICP，flease see 
   ICP-Methods-Comparision/imlsMatcherProject
 - In future,the Correlative Scan-Matching (CSM) will also be added, to get a robuster pose estimate result.
